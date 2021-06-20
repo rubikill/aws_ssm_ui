@@ -1,0 +1,21 @@
+{
+  "elixirLS.projectDir": "./aws_ssm_ui",
+  "eslint.workingDirectories": [
+    {
+      "directory": "./aws_ssm_ui",
+      "changeProcessCWD": true
+    }
+  ],
+  "emeraldwalk.runonsave": {
+    "commands": [
+      {
+        "match": "\\.exs?$",
+        "cmd": "mix format mix.exs ${file}"
+      },
+      {
+        "match": "\\.rb$",
+        "cmd": "bundle exec rubocop --require rubocop-rails -A --force-exclusion --fail-level C ${file}"
+      }
+    ]
+  }
+}

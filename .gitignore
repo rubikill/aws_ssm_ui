@@ -1,0 +1,7 @@
+.env
+start.sh
+deploy/ssm/env
+_docker-compose*
+.DS_Store
+*/.DS_Store
+data

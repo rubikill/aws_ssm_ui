@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+c_dir=$PWD
+. ./.env
+#mix clean --all && mix deps.get && mix compile
+
+if [ $1 ]
+then
+  cd aws_ssm_ui/$1
+fi
+
+if [ $2 ]
+then
+  if [ "$2" = "debug" ];
+  then
+    iex -S iex -S mix phx.server
+  else
+    if [ "$2" = "release" ];
+    then
+      if [ $1 = "aws_ssm_ui" ];
+      then
+        cd assets
+        yarn install
+        yarn build
+        cd "$c_dir/aws_ssm_ui/$1"
+        echo "Clean assets..."
+        mix phx.digest.clean
+        echo "Build assets..."
+        mix phx.digest
+        echo "Build assets done"
+      fi
+
+      mix release
+      eval "$c_dir/_build/$MIX_ENV/rel/$1/bin/$1 stop"
+      eval "$c_dir/_build/$MIX_ENV/rel/$1/bin/$1 start"
+      echo "Ahihi"
+      cd "$c_dir"
+    else
+      shift
+      mix $@
+    fi
+  fi
+else
+  iex -S mix phx.server
+fi

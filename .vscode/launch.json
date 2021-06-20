@@ -1,0 +1,25 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "mix_task",
+      "name": "phx.server",
+      "task": "phx.server",
+      "request": "launch",
+      "projectDir": "${workspaceRoot}/aws_ssm_ui"
+    },
+    {
+      "type": "mix_task",
+      "name": "mix test",
+      "request": "launch",
+      "task": "test",
+      "taskArgs": ["--trace"],
+      "startApps": true,
+      "projectDir": "${workspaceRoot}/aws_ssm_ui",
+      "requireFiles": ["test/**/test_helper.exs", "test/**/*_test.exs"]
+    }
+  ]
+}
